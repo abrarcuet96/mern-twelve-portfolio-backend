@@ -1,14 +1,9 @@
-import dotenv from "dotenv";
 import mongoose from "mongoose";
-
+import dotenv from "dotenv";
 dotenv.config();
-
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.knbbtt1.mongodb.net/?appName=Cluster0`
-    );
-
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     console.log(`Database Name: ${conn.connection.name}`);
   } catch (error) {
@@ -16,5 +11,4 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
 export default connectDB;

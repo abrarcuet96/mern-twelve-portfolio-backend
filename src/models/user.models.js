@@ -1,6 +1,6 @@
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { model, Schema } from "mongoose";
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -8,12 +8,7 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      match: [
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-0.-]+\.[a-zA-Z]{2,}$/,
-        "Please fill a valid email address",
-      ],
     },
-
     password: {
       type: String,
       required: true,
@@ -25,11 +20,11 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
+  next();
 });
 
-const User = model("User", userSchema);
-
+const User = mongoose.model("User", userSchema);
 export default User;
