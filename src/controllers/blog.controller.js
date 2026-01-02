@@ -35,33 +35,33 @@ const createBlog = async (req, res) => {
 
 const allBlog = async (req, res) => {
   try {
-    let pageNo = Number(req.params.pageNo);
-    let perPage = Number(req.params.perPage);
+    // let pageNo = Number(req.params.pageNo);
+    // let perPage = Number(req.params.perPage);
 
-    let skipRow = (pageNo - 1) * perPage;
+    // let skipRow = (pageNo - 1) * perPage;
 
-    let sortStage = { createdAt: -1 };
-    let facetStage = {
-      $facet: {
-        totalCount: [{ $count: "count" }],
-        blogs: [
-          { $sort: sortStage },
-          { $skip: skipRow },
-          { $limit: perPage },
-          {
-            $project: {
-              title: 1,
-              img: 1,
-              category: 1,
-              description: 1,
-              short_description: 1,
-            },
-          },
-        ],
-      },
-    };
+    // let sortStage = { createdAt: -1 };
+    // let facetStage = {
+    //   $facet: {
+    //     totalCount: [{ $count: "count" }],
+    //     blogs: [
+    //       { $sort: sortStage },
+    //       { $skip: skipRow },
+    //       { $limit: perPage },
+    //       {
+    //         $project: {
+    //           title: 1,
+    //           img: 1,
+    //           category: 1,
+    //           description: 1,
+    //           short_description: 1,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // };
 
-    let blogs = await Blog.aggregate([facetStage]);
+    let blogs = await Blog.find();
 
     res.status(200).json({
       success: true,
