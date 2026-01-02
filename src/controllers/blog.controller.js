@@ -66,7 +66,7 @@ const allBlog = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Blogs fetched successfully",
-      data: blogs[0],
+      data: blogs,
     });
   } catch (error) {
     res.status(500).json({
