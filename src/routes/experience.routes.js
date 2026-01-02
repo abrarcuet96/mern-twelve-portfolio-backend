@@ -1,6 +1,6 @@
 import express from "express";
 import experienceControllers from "../controllers/experience.controller.js";
-import { validateUser } from "../middlewares/validation.middleware.js";
+import { validateUser } from "../middlewares/validation.middlewares.js";
 
 const router = express.Router();
 
@@ -29,3 +29,4 @@ router.delete(
   validateUser,
   experienceControllers.deleteExperience
 );
+export default router;

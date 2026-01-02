@@ -1,5 +1,6 @@
 import express from "express";
 import serviceControllers from "../controllers/service.controller.js";
+import { validateUser } from "../middlewares/validation.middlewares.js";
 
 const router = express.Router();
 
@@ -20,3 +21,4 @@ router.delete(
   validateUser,
   serviceControllers.deleteService
 );
+export default router;

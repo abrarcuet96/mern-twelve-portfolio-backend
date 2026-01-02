@@ -1,6 +1,6 @@
 import express from "express";
 import advantageControllers from "../controllers/advantage.controller.js";
-import { validateUser } from "../middlewares/validation.middleware.js";
+import { validateUser } from "../middlewares/validation.middlewares.js";
 
 const router = express.Router();
 
@@ -25,3 +25,5 @@ router.delete(
   validateUser,
   advantageControllers.deleteAdvantage
 );
+
+export default router;

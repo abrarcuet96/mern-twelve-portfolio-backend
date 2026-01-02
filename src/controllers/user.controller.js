@@ -2,8 +2,12 @@ import bcrypt from "bcrypt";
 import authConfigs from "../config/auth.config.js";
 import User from "../models/user.models.js";
 const userRegister = async (req, res) => {
+  console.log(req);
+
   try {
     const { email, password } = req.body;
+
+    console.log(email);
     const user = await User.create({ email, password });
 
     res.status(201).json({
@@ -61,6 +65,21 @@ const userLogin = async (req, res) => {
   }
 };
 
-const userControllers = { userRegister, userLogin };
+const userLogout = async (req, res) => {
+  try {
+    res.clearCookie("user-token");
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successful",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
+const userControllers = { userRegister, userLogin, userLogout };
 
 export default userControllers;

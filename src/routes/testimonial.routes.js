@@ -1,6 +1,8 @@
+import express from "express";
 import testimonialControllers from "../controllers/testimonial.controller.js";
 import { validateUser } from "../middlewares/validation.middlewares.js";
 
+const router = express.Router();
 router.post(
   "/create-testimonial",
   validateUser,
@@ -26,3 +28,4 @@ router.delete(
   validateUser,
   testimonialControllers.deleteTestimonial
 );
+export default router;

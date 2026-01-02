@@ -1,6 +1,6 @@
 import express from "express";
 import educationControllers from "../controllers/education.controller.js";
-import { validateUser } from "../middlewares/validation.middleware.js";
+import { validateUser } from "../middlewares/validation.middlewares.js";
 
 const router = express.Router();
 
@@ -20,3 +20,4 @@ router.delete(
   validateUser,
   educationControllers.deleteEducation
 );
+export default router;
