@@ -39,6 +39,10 @@ app.use("/api/v1/services", serviceRoutes);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Portfolio Backend Server is Running...");
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
